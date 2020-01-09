@@ -10,6 +10,7 @@ before_script:
 after_script:
 - npm test
 deploy:
+  skip_cleanup: true
   provider: npm
   email: mejdiourir@gmail.com
   api_key:
@@ -17,3 +18,5 @@ deploy:
   on:
     tags: true
     repo: idjem/screen-saver-trigger
+
+
