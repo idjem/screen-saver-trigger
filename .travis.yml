@@ -1,16 +1,19 @@
 language: node_js
 node_js:
 - 8
-
 dist: xenial
 services:
-  - xvfb
-
+- xvfb
 sudo: required
-
 before_script:
-  - "export DISPLAY=:99.0"
-
-
+- export DISPLAY=:99.0
 after_script:
 - npm test
+deploy:
+  provider: npm
+  email: mejdiourir@gmail.com
+  api_key:
+    secure: ZflPjxBrGqohAnDkLzQ7ggGSagftFS1oMwjXrngSFD/MDeYshmFlxefjl0pp4vNSsrh0Yvx+mHfZ80jzYwVtxVz6mb7Wj63jaiNd8ikZs6zoDxccMs+mQ756+zDIKmWrja/2PplGeaJa+H/xlHeItmGZkOb+gtn4gPfb2JnIZG2ONQqtTVooY9a++KJMBaneUP5Ip36jgdebemUN2g+fCkkhnWAR8ezlZT4jAKQ/KN6+F7KHZUcM5ZDnS1RJKnoOkfEp+p0YHW2XHg+HlSRYgXbxXQWACzo4SFuKEwF9e+rxaFcXGekDl3F86BzlBgbdw28Zv3fDLixj9zo61zkEX/UxuTRpfoSLUvaQSjDdpsebwf1NHgyH7nuupFA/gor+/QrdZFheM7++W5oF6BxJ91FXr5zLw1yI8WgcjmXicQH10zMc9xgwkspGARKxPuKaAnX4GOyFRirZ/HmY9136rvzGQeZzSmNcFFoVGwuIyvxhz+SUsAvTUt6xMZoEDq7v/6c1LJgLTGlBNE/Bss55nOtggVFO347QOHtVuV+2/9gPylhPY+A2JP25+wzSpDKllKHM0zhsrlQOlm/unj6Rp8MT3BtMfhmT7uVzS3/3Pb8pci07ZFDW16Uk0hQzitiSujOs6LEvbFiADdoyBs6FwkO+gTX2Vk+eNs+hOUP6pKg=
+  on:
+    tags: true
+    repo: idjem/screen-saver-trigger
