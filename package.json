@@ -1,0 +1,15 @@
+{
+  "name": "screen-saver-trigger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mejdiourir@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "nyks": "^5.14.4",
+    "screensaver-trigger": "^2.1.0"
+  }
+}
