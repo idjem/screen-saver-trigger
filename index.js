@@ -2,13 +2,16 @@
 
 const sleep       = require('nyks/async/sleep');
 
+const uptime = () => process.uptime() * 1000;
+
+
 class screenSaver extends require('events').EventEmitter {
 
   constructor(timeout, getIdleTime, shouldStart = true) {
     super();
     this.timeout   = timeout;
-    this.lastCall  = shouldStart ? -timeout : process.uptime() * 1000;
-    this.dateStart = shouldStart ? process.uptime() * 1000 : -timeout;
+    this.lastCall  = shouldStart ? -timeout : uptime();
+    this.dateStart = shouldStart ? uptime() : -timeout;
     this.shouldStart = shouldStart;
     this.getIdleTime = getIdleTime;
   }
@@ -37,18 +40,18 @@ class screenSaver extends require('events').EventEmitter {
   }
 
   async _properIdleTime() {
-    var lastIdleTime = Math.min((await this.getIdleTime()), process.uptime() * 1000 - this.lastCall);
-    if(lastIdleTime >= (process.uptime() * 1000) - this.dateStart) // >= => if we simule touch and resetIdle Time at the same seconde => resetIdleTime win.
+    var lastIdleTime = Math.min((await this.getIdleTime()), uptime() - this.lastCall);
+    if(lastIdleTime >= uptime() - this.dateStart) // >= => if we simule touch and resetIdle Time at the same seconde => resetIdleTime win.
       return this.timeout + 10;
     return lastIdleTime;
   }
 
   simuleTouch() {
-    this.lastCall = process.uptime() * 1000;
+    this.lastCall = uptime();
   }
 
   resetIdleTime() {
-    this.dateStart = process.uptime() * 1000;
+    this.dateStart = uptime();
   }
   
 
