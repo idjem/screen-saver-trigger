@@ -9,11 +9,12 @@
 ```
 
 const ScreenSaver = require('node-screen-saver');
+const getIdleTime = require('screensaver-trigger/idle_time_linux').getIdleTime;
 
 const timeout = 60 * 1000; //1min
 const startOnScreenSaver = true; //1min
 
-const screenSaver = new ScreenSaver(timeout, startOnScreenSaver);
+const screenSaver = new ScreenSaver(timeout, getIdleTime, startOnScreenSaver);
 
 screenSaver.on('open', () => {
   console.log('screen saver start');
