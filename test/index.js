@@ -107,6 +107,28 @@ describe('basic screen saver', function() {
     expect(open).to.be(true);
   });
 
+  it('test stop screen saver ', async () => {
+    const shouldStart = true;
+
+    const screenSaver = new ScreenSaver(1000, getIdleTime, shouldStart);
+    var open;
+    screenSaver.on('open',() => {
+      open = true;
+    })
+    screenSaver.on('close',() => {
+      open = false;
+    })
+    screenSaver.start();
+    await sleep(300);
+    expect(open).to.be(true);
+    screenSaver.stop();
+    move();
+    await sleep(200);
+    expect(open).to.be(true);
+
+  });
+
+
 
 
 });

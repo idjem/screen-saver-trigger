@@ -28,7 +28,7 @@ class screenSaver extends require('events').EventEmitter {
     do {
       try {
         while((await this._properIdleTime()) >  this.timeout)
-          await Promise.race([sleep(200), this.cancel]);
+          await Promise.race([sleep(200), this._cancel]);
 
         try {
           this.emit('close');
@@ -36,7 +36,7 @@ class screenSaver extends require('events').EventEmitter {
 
         //await Promise.all([await sleep(this.timeout), reject]); //add promise reject here when resetIdleTime
         while((await this._properIdleTime()) <= this.timeout)
-          await Promise.race([sleep(200), this.cancel]);
+          await Promise.race([sleep(200), this._cancel]);
 
         try {
           this.emit('open');
@@ -46,7 +46,7 @@ class screenSaver extends require('events').EventEmitter {
         this.forceIdleMode();
 
       } catch(err) {
-        this.cancel = defer();
+        this._cancel = defer();
         this._started = false;
         break;
       }
