@@ -49,7 +49,7 @@ describe('win/linux screen saver test', function() {
     screenSaver.start();
     await sleep(200);
     expect(open).to.be(true);
-    screenSaver.simuleTouch();
+    screenSaver.forceActiveMode();
     await sleep(200);
     expect(open).to.be(false);
     await sleep(1000);
@@ -72,7 +72,7 @@ describe('win/linux screen saver test', function() {
     move(2, 3);
     await sleep(200);
     expect(open).to.be(false);
-    screenSaver.resetIdleTime();
+    screenSaver.forceIdleMode();
     await sleep(200);
     expect(open).to.be(true);
   });

@@ -48,7 +48,7 @@ describe('basic screen saver', function() {
     screenSaver.start();
     await sleep(200);
     expect(open).to.be(true);
-    screenSaver.simuleTouch();
+    screenSaver.forceActiveMode();
     await sleep(200);
     expect(open).to.be(false);
     await sleep(1100);
@@ -70,7 +70,7 @@ describe('basic screen saver', function() {
     move();
     await sleep(200);
     expect(open).to.be(false);
-    screenSaver.resetIdleTime();
+    screenSaver.forceIdleMode();
     await sleep(200);
     expect(open).to.be(true);
   });
